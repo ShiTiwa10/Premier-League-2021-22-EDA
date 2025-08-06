@@ -18,6 +18,7 @@ The project has evolved from an initial Jupyter notebook (`EDA.ipynb`) to a more
 Premier-League-2021-22-EDA-main/
 ├── EDA.py                 # Main analysis script (Updated version)
 ├── EDA.ipynb             # Original Jupyter notebook (Legacy version)
+├── Fbref_scrape.py       # A script used to pull the data from Fbref.com (Although the data is present in the commit, I'm updating this so anyone who wishes to use it can modify/scale, and use as need be)
 ├── data/                 # Data directory
 │   ├── overall.csv
 │   ├── goalkeeping_standard.csv
