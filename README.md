@@ -1,25 +1,37 @@
-# Premier League 2021-22 Season Analysis
+# Premier League 2021–22 — Season Exploratory Data Analysis (EDA)
 
-This project provides a comprehensive analysis of the 2021-22 Premier League season, focusing on team performance metrics, efficiency, and tactical insights.
+A friendly, data-first look at the 2021–22 Premier League season: team performance, defensive and goalkeeping impact, chance creation, and more. I scraped the data from Fbref, cleaned it, and ran the numbers so you don’t have to (unless you want to).
 
-## Project Evolution
+---
 
-The project has evolved from an initial Jupyter notebook (`EDA.ipynb`) to a more structured Python script (`EDA.py`). This evolution brought several improvements:
+## TL;DR
 
-1. **Code Organization**: Refactored the code into reusable helper functions
-2. **Maintainability**: Reduced code duplication and improved readability
-3. **Consistency**: Standardized visualization and data processing operations
-4. **Performance**: Optimized data operations and reduced memory usage
-5. **Documentation**: Added comprehensive docstrings and comments
+* **What:** An EDA of Premier League 2021–22 covering team performance, defense, goalkeeping, chance creation, and shooting efficiency.
+* **How:** Data pulled from Fbref, prepared with helper functions, visualized with matplotlib/seaborn, and packaged as `EDA.py` (plus the original notebook for exploration).
+* **Run it:** `python EDA.py` 
+* **Interactive dashboard:** There’s an interactive dashboard included, built by me, for clicking-around analysis. See **Dashboard** below for where to find it and how to view it.
 
-## Project Structure
+---
+
+## Why this project?
+
+Because football is messy and numbers help you see the patterns. This project is for anyone who:
+
+* likes the tactical side of the game,
+* wants a reproducible example of doing ETL → EDA with real sports data, or
+* needs a starting point to build predictive models or dashboards from open data.
+
+---
+
+## What’s in the repo
 
 ```
-Premier-League-2021-22-EDA-main/
-├── EDA.py                 # Main analysis script (Updated version)
-├── EDA.ipynb             # Original Jupyter notebook (Legacy version)
-├── Fbref_scrape.py       # A script used to pull the data from Fbref.com (Although the data is present in the commit, I'm updating this so anyone who wishes to use it can modify/scale, and use as need be)
-├── data/                 # Data directory
+Premier-League-2021-22-EDA/
+├── EDA.py                 # Main, refactored analysis script
+├── EDA.ipynb              # Original exploratory notebook
+├── Fbref_scrape.py        # Script to scrape & refresh the Fbref data
+├── dashboard/             # Interactive dashboard (see README section)
+├── data/                  # CSVs used by the analysis
 │   ├── overall.csv
 │   ├── goalkeeping_standard.csv
 │   ├── goalkeeping_adv.csv
@@ -28,129 +40,97 @@ Premier-League-2021-22-EDA-main/
 │   ├── squad_passing.csv
 │   ├── squad_possession.csv
 │   └── squad_shooting.csv
+├── requirements.txt
 └── README.md
 ```
 
-## Helper Functions
+---
 
-The analysis uses several helper functions to maintain code consistency and readability:
 
-### Data Management
-- `load_csv_file(filename, required_columns=None)`: Loads CSV files with error handling and column validation
-- `clean_dataframe(df, drop_cols=None, rename_cols=None, fill_na=None)`: Cleans DataFrames by dropping columns, renaming columns, and filling NA values
-- `display_df_info(df, name, show_head=True, show_info=True, show_describe=True)`: Displays common DataFrame information
+## Dashboard (interactive)
 
-### Visualization
-- `plot_scatter(df, x, y, title, xlabel=None, ylabel=None, hue=None, figsize=(12, 8))`: Creates standardized scatter plots
-- `plot_bar(df, x, y, title, xlabel=None, ylabel=None, hue=None, figsize=(12, 8), palette="viridis", rotate_xlabels=True)`: Creates standardized bar plots
-- `plot_correlation_heatmap(df, columns=None, title="Correlation Matrix", figsize=(10, 8), cmap="coolwarm")`: Creates correlation heatmaps
+I built a [Tableau Dashboard](https://public.tableau.com/app/profile/shivank.tiwari/viz/Dashboard_17281403149920/PremierLeague2021-22ClubReview) for interactive visualisation.
 
-### Analysis
-- `calculate_efficiency_metrics(df, x_col, y_col, new_col_name)`: Calculates efficiency metrics and adds them to the dataframe
+---
 
-## Analysis Areas
+## Versioning & "what changed" (short and useful)
 
-### 1. Team Performance Metrics
-- Goals scored vs. goals conceded
-- Expected goals (xG) vs. expected goals against (xGA)
-- Goals vs. expected goals comparison
-- Goals against vs. expected goals against comparison
+This repo intentionally keeps two different artifacts with slightly different purposes. Call them out so future readers aren’t confused:
 
-### 2. Defensive Analysis
-- Defensive actions vs. goals conceded
-- Correlation analysis of defensive metrics
-- Defensive efficiency metrics
-  - Defensive actions per possession
-  - Goals against per defensive action
+* **`EDA.ipynb` — exploratory (working notebook)**
 
-### 3. Goalkeeping Performance
-- Post-shot expected goals vs. goals against
-- Correlation analysis of goalkeeping metrics
-- Goalkeeping efficiency metrics
-  - Goals against per post-shot expected goals
-  - Save percentage analysis
+  * Purpose: interactive exploration, experimentation, iterative plots, and quick calculations.
+  * Expect: commented steps, throwaway cells, and intermediate plots used to shape the analysis.
 
-### 4. Chance Creation and Shooting
-- Chance creation efficiency
-  - SCA per progressive action
-  - GCA per progressive action
-  - GCA per SCA
-- Shooting efficiency
-  - Goals per shot
-  - Goals per shot on target
-  - Non-penalty expected goals per shot
+* **`EDA.py` — refactor / reproducible script**
 
-## Key Findings
+  * Purpose: a cleaned, reproducible script suitable for reruns and scheduled jobs. It extracts helper functions, uses consistent I/O, and is organized to be imported as a module or run end-to-end.
+  * Expect: clearer function APIs, better input validation, and a more deterministic output structure than the notebook.
 
-### Team Performance
-- Manchester City and Liverpool showed the best balance between xG and xGA
-- Norwich City had the least balanced performance
-- Teams with better xG/xGA ratios generally finished higher in the table
+---
 
-### Defensive Efficiency
-- Defensive actions alone are not strongly correlated with goals conceded
-- xGA is a better predictor of goals conceded than defensive actions
-- Teams with higher possession tend to have fewer defensive actions
+## What the analysis covers
 
-### Goalkeeping Impact
-- Liverpool and Wolves had the most positive goalkeeper impact
-- Post-shot expected goals is strongly correlated with actual goals against
-- Save percentage is a key indicator of goalkeeper performance
+Short version of the analyses included:
 
-### Chance Creation
-- Manchester City and Liverpool created the highest quality chances
-- Teams with more progressive actions tend to create more chances
-- Chance creation efficiency varies significantly between teams
+### Team performance
 
-## Interactive Dashboard
+* Goals vs. goals conceded
+* xG vs. xGA and how those relate to final table positions
 
-For an interactive exploration of the Premier League 2021-22 season data, check out the [Tableau Dashboard](https://public.tableau.com/app/profile/shivank.tiwari/viz/Dashboard_17281403149920/PremierLeague2021-22ClubReview). 
+### Defensive analysis
+
+* Defensive actions vs. goals conceded
+* Defensive efficiency metrics (actions per possession, goals conceded per defensive action)
+* Correlations between defensive metrics and results
+
+### Goalkeeping
+
+* Post-shot xG vs. goals conceded
+* Save percentage and keeper impact measures
+
+### Chance creation & shooting
+
+* Chance creation efficiency (SCA/GCA relative to progressive actions)
+* Shooting efficiency (goals per shot, goals per shot on target, non-penalty xG per shot)
+
+---
+
+## Key findings (high-level)
+
+* Manchester City and Liverpool showed strong balance between xG and xGA.
+* xGA tends to be a better predictor of goals conceded than raw defensive action counts.
+* Goalkeeping impact (post-shot xG & save %) meaningfully explains differences in goals-against between teams.
+* Teams that create more progressive actions generally create higher-quality chances.
+
+These are summarised results from the analysis in `EDA.py` and the notebook.
+
+---
+
+## Code notes & helper functions
+
+To keep things tidy and reusable the analysis uses helper functions for:
+
+* loading & validating CSVs (`load_csv_file`)
+* cleaning DataFrames (`clean_dataframe`)
+* common plotting utilities (`plot_scatter`, `plot_bar`, `plot_correlation_heatmap`)
+* domain-specific metrics (e.g., `calculate_efficiency_metrics`)
+
+You’ll find function docstrings in `EDA.py` — they’re short and useful if you want to extend the analysis.
+
+---
 
 ## Dependencies
 
-- Python 3.x
-- pandas
-- matplotlib
-- seaborn
-- numpy
+* Python 3.x
+* pandas, numpy
+* matplotlib, seaborn
+  (See `requirements.txt` for exact versions.)
 
-## Usage
+---
 
-1. Ensure all required CSV files are in the `data` directory
-2. Run the analysis:
-   ```bash
-   python EDA.py
-   ```
-   Or open `EDA.ipynb` in Jupyter Notebook for interactive analysis
+## License
 
-## Data Sources
+MIT — use it, remix it, teach someone with it.
 
-All data is sourced from FBref.com and includes:
-- Overall team statistics
-- Goalkeeping statistics (standard and advanced)
-- Squad defensive actions
-- Squad chance creation
-- Squad passing statistics
-- Squad possession statistics
-- Squad shooting statistics
-
-## Notes
-
-- The analysis focuses on the 2021-22 Premier League season
-- All metrics are calculated per 90 minutes where applicable
-- Efficiency metrics are calculated as ratios of relevant statistics
-- Visualizations use consistent styling and formatting for better readability
-
-## Version History
-
-### Version 1.0 (EDA.ipynb)
-- Initial analysis in Jupyter notebook format
-- Basic data processing and visualization
-- Exploratory analysis of team performance
-
-### Version 2.0 (EDA.py)
-- Refactored into Python script
-- Added helper functions for common operations
-- Improved code organization and maintainability
-- Enhanced visualization consistency
-- Added comprehensive documentation 
+---
