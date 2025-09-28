@@ -116,7 +116,7 @@ To keep things tidy and reusable the analysis uses helper functions for:
 * common plotting utilities (`plot_scatter`, `plot_bar`, `plot_correlation_heatmap`)
 * domain-specific metrics (e.g., `calculate_efficiency_metrics`)
 
-You’ll find function docstrings in `EDA.py` — they’re short and useful if you want to extend the analysis.
+You’ll find function docstrings in `EDA.py`, they’re short and useful if you want to extend the analysis.
 
 ---
 
@@ -131,6 +131,6 @@ You’ll find function docstrings in `EDA.py` — they’re short and useful if 
 
 ## License
 
-MIT — use it, remix it, teach someone with it.
+MIT, use it, remix it, teach someone with it.
 
 ---
